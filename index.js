@@ -79,7 +79,10 @@ app.get('/api/thaipost',(req,res)=>{
             console.log(element.status_description)
             lastCheckpoint = element.status_description
         });
-        res.send(lastCheckpoint)
+        const returnObj = {
+            message : lastCheckpoint
+        }
+        res.send(returnObj)
         // return tracks;
         // resolve(tracks)
         
