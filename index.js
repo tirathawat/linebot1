@@ -20,6 +20,7 @@ app.get('/',(req,res)=>{
     // res.send("123123123")
 });
 app.get('/api/thaipost',(req,res)=>{
+    console.log(req.query.id)
     console.log('/api/:id')
     gettrack(req,'EF582568151TH',res)
     // DetectTrack(req,'EF582568151TH',res)
