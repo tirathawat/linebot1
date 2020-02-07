@@ -73,13 +73,14 @@ app.get('/api/thaipost',(req,res)=>{
         let tracks = await promise_track;
         
         // console.log(tracks.response.items)
-        res.send(tracks.response.items[message])
-        
+        // res.send(tracks.response.items[message])
+        var lastCheckpoint;
         tracks.response.items[message].forEach(element => {
             console.log(element.status_description)
+            lastCheckpoint = element.status_description
         });
-            
-        return tracks;
+        res.send(lastCheckpoint)
+        // return tracks;
         // resolve(tracks)
         
     }
