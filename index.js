@@ -21,8 +21,8 @@ app.get('/',(req,res)=>{
 });
 app.get('/api/thaipost',(req,res)=>{
     console.log('/api/:id')
-    // gettrack(req,'EF582568151TH',res)
-    DetectTrack(req,'EF582568151TH',res)
+    gettrack(req,'EF582568151TH',res)
+    // DetectTrack(req,'EF582568151TH',res)
 });
 
 ///Thai Post
