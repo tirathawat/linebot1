@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/ganinw13120/linebot1/issues"
   },
-  "homepage": "https://github.com/ganinw13120/linebot1#readme"
+  "homepage": "https://github.com/ganinw13120/linebot1#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "puppeteer": "^2.1.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
+  }
 }
