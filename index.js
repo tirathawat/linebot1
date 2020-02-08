@@ -22,7 +22,7 @@ app.get('/',(req,res)=>{
 app.get('/api/thaipost',(req,res)=>{
     console.log(req.query.id)
     console.log('/api/:id')
-    gettrack(req,'EF582568151TH',res)
+    gettrack(req,req.query.id,res)
     // DetectTrack(req,'EF582568151TH',res)
 });
 
