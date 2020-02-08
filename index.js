@@ -39,8 +39,8 @@ app.get('/api/thaipost',(req,res)=>{
                     'Authorization': 'Token ' + config.thaipost.token
                 }
             };
-            
             request(options, function(error, response, body) {
+                console.log(error)
                 resolve(JSON.parse(body));
             });
         });
@@ -75,17 +75,20 @@ app.get('/api/thaipost',(req,res)=>{
         
         // console.log(tracks.response.items)
         // res.send(tracks.response.items[message])
+
         var lastCheckpoint;
+        
         tracks.response.items[message].forEach(element => {
             console.log(element.status_description)
             lastCheckpoint = element.status_description
         });
+
         const returnObj = {
             message : lastCheckpoint
         }
-        res.send(returnObj)
-        // return tracks;
-        // resolve(tracks)
+        // res.send(tracks.response.items['EF58256815'])
+        // res.send(tracks.response.items)
+        res.send('สถานะปัจจุบัน : '+returnObj)
         
     }
 ///
