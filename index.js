@@ -84,11 +84,11 @@ app.get('/api/thaipost',(req,res)=>{
         });
 
         const returnObj = {
-            message : lastCheckpoint
+            message : 'สถานะปัจจุบัน : '+lastCheckpoint
         }
         // res.send(tracks.response.items['EF58256815'])
         // res.send(tracks.response.items)
-        res.send('สถานะปัจจุบัน : '+returnObj)
+        res.send(returnObj)
         
     }
 ///
