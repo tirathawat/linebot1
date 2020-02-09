@@ -18,35 +18,31 @@ app.get('/',(req,res)=>{
 
 app.get('/api/tour',(req,res)=>{
     console.log('/api/tour')
-    getPlaceSearch(req.query.keyword,res)
+    getPlaceSearch(req,res)
 });
 
 async function getPlaceSearch(req,res){
-    let con_request = new Promise(resolve => {
-        var options = {
-            method: 'GET',
-            uri: 'https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword='+req,
-            strictSSL: false,
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer GoAYHxN5)f(joBFE0pi3nxFskYhnb4KbM56YcBybamCON1sSA9YThRQxqw9sDLNktr6)4ZsVu6841b2ys7)xAjG=====2',
-                'Accept-Language': 'en'
-            }
-        };
-        request(options, function(error, response, body) {
-//             if(error!="")console.log(error)
-            console.log(body)
-            console.log(req)
-//             console.log(response)
-            resolve(body)
-//             resolve(JSON.parse(body));
+        let con_request = new Promise(resolve => {
+            var options = {
+                method: 'GET',
+                uri: 'https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword='+req.query.keyword,
+                strictSSL: false,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer G(Ao51HbIP9mfF39IHiNH0mgj9Umj5KK(QxYb6iAjtZE6hXcksHH6wWA)MEuLLu1nb3t(TDhVW1kgtAF5mc5XYG=====2',
+                    'Accept-Language': 'en'
+                }
+            };
+            request(options, function(error, response, body) {
+                if(error!="")console.log(error)
+                // console.log(body)
+                resolve(JSON.parse(body));
+            });
         });
-    });
-    let result = await con_request;
-    res.send(result)
-    console.log(result)
-}
-
+        let result = await con_request;
+        res.send(result)
+        console.log(result)
+    }
     
 
 exports = module.exports = app;
