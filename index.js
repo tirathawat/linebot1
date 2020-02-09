@@ -22,7 +22,7 @@ app.get('/api/tour',(req,res)=>{
 });
 
 async function getPlaceSearch(req,res){
-    var url = 'https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword='
+    var url = 'https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword='+(req.query.keyword)
     let params = {
         "keyword":req.query.keyword
     };
