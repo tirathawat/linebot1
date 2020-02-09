@@ -25,6 +25,10 @@ app.get('/api/thaipost',(req,res)=>{
     gettrack(req,req.query.id,res)
     // DetectTrack(req,'EF582568151TH',res)
 });
+app.get('/api/tour',(req,res)=>{
+    console.log('/api/tour')
+    gettour(req,res)
+});
 
 ///Thai Post
     async function gettrack(req, message,res)
@@ -90,8 +94,6 @@ app.get('/api/thaipost',(req,res)=>{
         
     }
 ///
-
-
     async function DetectTrack(req,code,res){
         
         let body = {
@@ -107,6 +109,29 @@ app.get('/api/thaipost',(req,res)=>{
         });
 
         res.send('Connection Complete') 
+    }
+
+    async function gettour(req,res){
+        let con_request = new Promise(resolve => {
+            var options = {
+                method: 'GET',
+                uri: 'https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword=Thung Thong Dried Longan',
+                strictSSL: false,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer G(Ao51HbIP9mfF39IHiNH0mgj9Umj5KK(QxYb6iAjtZE6hXcksHH6wWA)MEuLLu1nb3t(TDhVW1kgtAF5mc5XYG=====2',
+                    'Accept-Language': 'en'
+                }
+            };
+            request(options, function(error, response, body) {
+                if(error!="")console.log(error)
+                // console.log(body)
+                resolve(JSON.parse(body));
+            });
+        });
+        let result = await con_request;
+        res.send(result)
+        console.log(result)
     }
 
 exports = module.exports = app;
