@@ -45,8 +45,24 @@ async function getPlaceSearch(req,res){
             });
         });
         let result = await con_request;
-        res.send(result)
-        console.log(result)
+        var returnObject = {
+            place_name : "",
+            place_id:""
+        }
+        // console.log(result.result)
+        // result.result.array.forEach(element => {
+        //     returnObject.place_name = element.place_name
+        //     returnObject.place_id = element.place_id
+        //     res.send(returnObject)
+        //     console.log(result)
+        // });
+        // console.log("blank")
+        // console.log(result.result[0].place_id)
+        returnObject.place_name =result.result[0].place_name
+        returnObject.place_id =result.result[0].place_id
+        res.send(returnObject)
+        // res.send(result)
+        // console.log(result)
     }
     
 
