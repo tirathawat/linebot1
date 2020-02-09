@@ -23,15 +23,13 @@ app.get('/api/tour',(req,res)=>{
 
 async function getPlaceSearch(req,res){
     var url = 'https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword='+(req.query.keyword)
-    let params = {
-        "keyword":req.query.keyword
-    };
+    
         let con_request = new Promise(resolve => {
             var options = {
                 method: 'GET',
                 uri: url,
                 strictSSL: false,
-                body: JSON.stringify(params),
+                // body: JSON.stringify(params),
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer G(Ao51HbIP9mfF39IHiNH0mgj9Umj5KK(QxYb6iAjtZE6hXcksHH6wWA)MEuLLu1nb3t(TDhVW1kgtAF5mc5XYG=====2',
