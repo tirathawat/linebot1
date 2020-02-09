@@ -86,6 +86,9 @@ app.get('/api/thaipost',(req,res)=>{
         const returnObj = {
             message : 'สถานะปัจจุบัน : '+lastCheckpoint
         }
+        if(lastCheckpoint==undefined){
+            returnObj.message = 'ไม่พบพัสดุดังกล่าว'
+        }
         // res.send(tracks.response.items['EF58256815'])
         // res.send(tracks.response.items)
         res.send(returnObj)
