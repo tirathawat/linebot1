@@ -72,10 +72,6 @@ app.get('/api/thaipost',(req,res)=>{
         });
 
         let tracks = await promise_track;
-        
-        // console.log(tracks.response.items)
-        // res.send(tracks.response.items[message])
-
         var lastCheckpoint;
         
         tracks.response.items[message].forEach(element => {
@@ -89,9 +85,114 @@ app.get('/api/thaipost',(req,res)=>{
         if(lastCheckpoint==undefined){
             returnObj.message = 'ไม่พบพัสดุดังกล่าว'
         }
-        // res.send(tracks.response.items['EF58256815'])
-        // res.send(tracks.response.items)
-        res.send(returnObj)
+        // res.send(returnObj)
+
+        let item_json = [];
+        let { response } = tracks;
+        let { items } = response;
+        let key = Object.keys(tracks.response.items);
+        
+        if (items[key[0]].length > 0) {
+            let bgcolor;
+            items[key[0]].forEach(function(detail) {
+                bgcolor = (detail.delivery_status == 'S') ? '#ABEBC6' : '#EEEEEE';
+                const item_temp = {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                {
+                                    "type": "text",
+                                    "text": detail.status_date
+                                }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "spacer",
+                                        "size": "xxl"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": detail.status_description,
+                                        "size": "sm"
+                                    }
+                                ],
+                                "spacing": "none",
+                                "margin": "md"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "spacer",
+                                        "size": "xxl"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": detail.location,
+                                        "size": "sm"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": detail.postcode,
+                                        "size": "sm"
+                                    }
+                                ],
+                                "spacing": "none",
+                                "margin": "md"
+                            }
+                        ]
+                    }
+                    ],
+                    "backgroundColor": bgcolor,
+                    "cornerRadius": "md",
+                    "paddingAll": "10px"
+                };
+
+                item_json.push(item_temp);
+            
+            });
+
+
+            payload = {
+                "type": "bubble",
+                "size": "giga",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": key[0],
+                    "decoration": "none",
+                    "size": "xl",
+                    "weight": "bold"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": item_json,
+                    "spacing": "sm",
+                    "margin": "md"
+                    }
+                ]
+                }
+            }
+            res.send(payload);    
+        } 
+
         
     }
 ///
