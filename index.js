@@ -24,6 +24,7 @@ app.get('/api/tour',(req,res)=>{
 async function getPlaceSearch(req,res){
     console.log(req.query.keyword)
     var url = 'https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword='+(req.query.keyword)
+    url = encodeURI(url)
     console.log(url)
         let con_request = new Promise(resolve => {
             var options = {
@@ -34,7 +35,7 @@ async function getPlaceSearch(req,res){
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer G(Ao51HbIP9mfF39IHiNH0mgj9Umj5KK(QxYb6iAjtZE6hXcksHH6wWA)MEuLLu1nb3t(TDhVW1kgtAF5mc5XYG=====2',
-                    'Accept-Language': 'en',
+                    'Accept-Language': 'th',
                 }
             };
             request(options, function(error, response, body) {
@@ -51,15 +52,6 @@ async function getPlaceSearch(req,res){
             place_name : "",
             place_id:""
         }
-        // console.log(result.result)
-        // result.result.array.forEach(element => {
-        //     returnObject.place_name = element.place_name
-        //     returnObject.place_id = element.place_id
-        //     res.send(returnObject)
-        //     console.log(result)
-        // });
-        // console.log("blank")
-        // console.log(result.result[0].place_id)
         try{
             returnObject.place_name =result.result[0].place_name
             returnObject.place_id =result.result[0].place_id
@@ -68,8 +60,6 @@ async function getPlaceSearch(req,res){
             returnObject.place_name = 'ไม่พบสถานที่ดังกล่าว'
         }
         res.send(returnObject)
-        // res.send(result)
-        // console.log(result)
     }
     
 
