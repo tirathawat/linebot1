@@ -25,7 +25,7 @@ async function getPlaceSearch(req,res){
     let con_request = new Promise(resolve => {
         var options = {
             method: 'GET',
-            uri: 'https://tatapi.tourismthailand.org/tatapi/v5/places/search',
+            uri: 'https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword='+req,
             strictSSL: false,
             headers: {
                 'Content-Type': 'application/json',
