@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 
 app.get('/api/tour',(req,res)=>{
     console.log('/api/tour')
-    gettour(req.query.keyword,res)
+    getPlaceSearch(req.query.keyword,res)
 });
 
 async function getPlaceSearch(req,res){
