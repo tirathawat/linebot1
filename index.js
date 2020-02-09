@@ -34,8 +34,9 @@ async function getPlaceSearch(req,res){
             }
         };
         request(options, function(error, response, body) {
-            if(error!="")console.log(error)
+//             if(error!="")console.log(error)
             console.log(body)
+            console.log(response)
             resolve(body)
 //             resolve(JSON.parse(body));
         });
