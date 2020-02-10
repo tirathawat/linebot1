@@ -53,8 +53,11 @@ async function getPlaceSearch(req,res){
             place_id:""
         }
         try{
-            returnObject.place_name =result.result[0].place_name
-            returnObject.place_id =result.result[0].place_id
+            int rand = Math.floor(Math.random() * result.length)
+            returnObject.place_name = result.result[rand].place_name
+            returnObject.place_if = result.result[rand].place_id
+            /*returnObject.place_name =result.result[0].place_name
+            returnObject.place_id =result.result[0].place_id*/
         }
         catch(err){
             returnObject.place_name = 'ไม่พบสถานที่ดังกล่าว'
